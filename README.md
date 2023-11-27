@@ -1,1 +1,2 @@
-Proof of concept of how to handle requirements to enable auto update to customer using Prime desktop app
+# TreeViewTestApp
+Testing app to understand Virtualization issue on TreeView control turned On.
