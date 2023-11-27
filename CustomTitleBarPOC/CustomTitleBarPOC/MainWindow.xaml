@@ -75,7 +75,7 @@
 				</Grid>
 
 				<Grid Grid.Row="1">
-					<Label Content="Hello Prime" />
+					<Label Content="Hello Prime" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="14"/>
 				</Grid>
 			</Grid>
 		</Border>
