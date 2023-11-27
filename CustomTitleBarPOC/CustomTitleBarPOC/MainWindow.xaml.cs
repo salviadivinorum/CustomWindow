@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using CustomTitleBarPOC.ViewModel;
+using System.Windows;
 using System.Windows.Input;
 
 namespace CustomTitleBarPOC
@@ -11,14 +12,20 @@ namespace CustomTitleBarPOC
 		public MainWindow()
 		{
 			InitializeComponent();
+			DataContext = new MainViewModel();
 		}
 
+		/// <summary>
+		/// Code behind version of Drag window functionality
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
 		private void Grid_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
 		{
-			if (e.ChangedButton == MouseButton.Left)
-			{
-				this.DragMove();
-			}
+			//if (e.ChangedButton == MouseButton.Left)
+			//{
+			//	DragMove();
+			//}
 		}
 	}
 }

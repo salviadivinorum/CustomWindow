@@ -5,11 +5,16 @@
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	xmlns:local="clr-namespace:CustomTitleBarPOC"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+	xmlns:vm="clr-namespace:CustomTitleBarPOC.ViewModel"
+	xmlns:model="clr-namespace:CustomTitleBarPOC.Model"
 	Title="MainWindow"
 	Width="800"
 	Height="450"
+	AllowsTransparency="True"
 	WindowStyle="None"
-	mc:Ignorable="d">
+	mc:Ignorable="d"
+	d:DataContext="{d:DesignInstance IsDesignTimeCreatable=True, Type=vm:MainViewModel}">
 	<Grid Background="Transparent">
 		<Border
 			Background="White"
@@ -21,7 +26,10 @@
 					<RowDefinition Height="*" />
 				</Grid.RowDefinitions>
 
-				<Grid Background="LightBlue" MouseLeftButtonDown="Grid_MouseLeftButtonDown">
+				<Grid Background="LightBlue">
+					<i:Interaction.Behaviors>
+						<model:MouseDownBehavior Command="{Binding DragWindowCommand}" />
+					</i:Interaction.Behaviors>
 					<TextBlock
 						HorizontalAlignment="Center"
 						VerticalAlignment="Center"
