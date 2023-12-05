@@ -1,0 +1,61 @@
+﻿<ResourceDictionary
+    x:Class="CustomTitleBarPOC.View.ChyronWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:controls="clr-namespace:CustomTitleBarPOC.View"
+    xmlns:shell="clr-namespace:System.Windows.Shell;assembly=PresentationFramework">
+
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="CommonStyles.xaml" />
+        <ResourceDictionary Source="Icons.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+
+    <Style x:Key="ChyronWindow" TargetType="{x:Type Window}">
+        <Setter Property="WindowStyle" Value="None" />
+        <Setter Property="AllowsTransparency" Value="True" />
+        <Setter Property="WindowState" Value="Maximized" />
+        <Setter Property="shell:WindowChrome.WindowChrome">
+            <Setter.Value>
+                <shell:WindowChrome
+                    CaptionHeight="32"
+                    CornerRadius="0"
+                    GlassFrameThickness="0"
+                    ResizeBorderThickness="6"
+                    UseAeroCaptionButtons="False" />
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Window}">
+                    <Border
+                        Background="{TemplateBinding Background}"
+                        BorderBrush="{TemplateBinding BorderBrush}"
+                        BorderThickness="{TemplateBinding BorderThickness}">
+                        <Grid Background="Transparent">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <!--  Title bar row  -->
+                                <RowDefinition Height="*" />
+                                <!--  Window.Content row  -->
+                            </Grid.RowDefinitions>
+                            <DockPanel
+                                Grid.Row="0"
+                                HorizontalAlignment="Stretch"
+                                VerticalAlignment="Stretch"
+                                Background="Transparent">
+                                <controls:ChyronWindowTitleBar
+                                    Title="{TemplateBinding Title}"
+                                    DockPanel.Dock="Top"
+                                    Icon="{TemplateBinding Icon}" />
+                                <ContentPresenter />
+                            </DockPanel>
+                            <AdornerDecorator Grid.Row="1">
+                                <ContentPresenter />
+                            </AdornerDecorator>
+                        </Grid>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>

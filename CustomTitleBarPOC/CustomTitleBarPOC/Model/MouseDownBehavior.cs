@@ -21,16 +21,16 @@ namespace CustomTitleBarPOC.Model
 		protected override void OnAttached()
 		{
 			base.OnAttached();
-			AssociatedObject.MouseLeftButtonDown += AssociatedObject_MouseLeftButtonDown;
+			AssociatedObject.MouseLeftButtonDown += AssociatedObject_MouseDown;
 		}
 
 		protected override void OnDetaching()
 		{
 			base.OnDetaching();
-			AssociatedObject.MouseLeftButtonDown -= AssociatedObject_MouseLeftButtonDown;
+			AssociatedObject.MouseLeftButtonDown -= AssociatedObject_MouseDown;
 		}
 
-		private void AssociatedObject_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+		private void AssociatedObject_MouseDown(object sender, MouseButtonEventArgs e)
 		{
 			ICommand command = Command;
 			if (command?.CanExecute(e) == true)

@@ -1,83 +1,56 @@
 ﻿<Window
-	x:Class="CustomTitleBarPOC.MainWindow"
-	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-	xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
-	xmlns:local="clr-namespace:CustomTitleBarPOC"
-	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-	xmlns:model="clr-namespace:CustomTitleBarPOC.Model"
-	xmlns:vm="clr-namespace:CustomTitleBarPOC.ViewModel"
-	Title="MainWindow"
-	Width="800"
-	Height="450"
-	WindowStartupLocation="CenterScreen"
-	d:DataContext="{d:DesignInstance IsDesignTimeCreatable=True,
-	                                 Type=vm:MainViewModel}"
-	AllowsTransparency="True"
-	WindowStyle="None"
-	mc:Ignorable="d">
-	<Grid Background="Transparent">
-		<Border
-			Background="White"
-			BorderBrush="Black"
-			BorderThickness="1">
-			<Grid>
-				<Grid.RowDefinitions>
-					<RowDefinition Height="30" />
-					<RowDefinition Height="*" />
-				</Grid.RowDefinitions>
+    x:Class="CustomTitleBarPOC.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+    xmlns:local="clr-namespace:CustomTitleBarPOC"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:model="clr-namespace:CustomTitleBarPOC.Model"
+    xmlns:vm="clr-namespace:CustomTitleBarPOC.ViewModel"
+    Title="POC Chyron Title bar"
+    Width="800"
+    Height="450"
+    Margin="-1"
+    d:DataContext="{d:DesignInstance IsDesignTimeCreatable=True,
+                                     Type=vm:MainViewModel}"
+    Icon="pack://application:,,,/CustomTitleBarPOC;component/Assets/prime.ico"
+    ResizeMode="CanResizeWithGrip"
+    Style="{DynamicResource ChyronWindow}"
+    WindowStartupLocation="CenterScreen"
+    mc:Ignorable="d">
 
-				<Grid.ColumnDefinitions>
-					<ColumnDefinition Width="*" />
-					<ColumnDefinition Width="auto" />
-				</Grid.ColumnDefinitions>
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/View/ChyronWindow.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+    <DockPanel>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="30" />
+            </Grid.RowDefinitions>
+            <Menu Grid.Row="0" VerticalAlignment="Top">
+                <MenuItem FontSize="15" Header="File" />
+                <MenuItem FontSize="15" Header="Edit" />
+                <MenuItem FontSize="15" Header="View" />
+            </Menu>
+            <Border
+                Grid.Row="1"
+                BorderBrush="Blue"
+                BorderThickness="1">
+                <TextBlock
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Center"
+                    FontSize="15"
+                    Text="Status bar" />
+            </Border>
 
-				<Grid Background="LightBlue">
-					<i:Interaction.Behaviors>
-						<model:MouseDownBehavior Command="{Binding DragWindowCommand}" />
-					</i:Interaction.Behaviors>
-					<TextBlock
-						Grid.Row="0"
-						Grid.Column="0"
-						HorizontalAlignment="Left"
-						VerticalAlignment="Center"
-						FontSize="14"
-						Foreground="Black"
-						Text="Chyron Prime 5.1.0" />
+        </Grid>
+    </DockPanel>
 
-					<StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment= "Right">
-						<Button
-							Width="30"
-							Height="30"
-							Command="{Binding InstallUpdate}">
-							<Image Source="pack://application:,,,/CustomTitleBarPOC;component/Assets/install-updates-50.png" />
-						</Button>
-						<Button
-							Width="30"
-							Height="30"
-							Command="{Binding MinimizeCommand}">
-							<Image Source="pack://application:,,,/CustomTitleBarPOC;component/Assets/minimize-50.png" />
-						</Button>
-						<Button
-							Width="30"
-							Height="30"
-							Command="{Binding MaximizeCommand}">
-							<Image Source="pack://application:,,,/CustomTitleBarPOC;component/Assets/maximize-50.png" />
-						</Button>
-						<Button
-							Width="30"
-							Height="30"
-							Command="{Binding CloseCommand}">
-							<Image Source="pack://application:,,,/CustomTitleBarPOC;component/Assets/close-50.png" />
-						</Button>
-					</StackPanel>
-				</Grid>
 
-				<Grid Grid.Row="1">
-					<Label Content="Hello Prime" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="14"/>
-				</Grid>
-			</Grid>
-		</Border>
-	</Grid>
 </Window>
