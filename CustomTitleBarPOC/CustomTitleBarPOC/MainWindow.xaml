@@ -28,7 +28,7 @@
         </ResourceDictionary>
     </Window.Resources>
     <DockPanel>
-        <Grid>
+        <Grid Background="LightGray">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*" />
                 <RowDefinition Height="30" />
