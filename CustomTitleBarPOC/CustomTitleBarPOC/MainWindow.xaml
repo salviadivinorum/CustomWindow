@@ -24,12 +24,8 @@
 		<ResourceDictionary>
 			<ResourceDictionary.MergedDictionaries>
 				<ResourceDictionary Source="/View/ChyronWindow.xaml" />
+				<ResourceDictionary Source="/View/TaskBarResources.xaml" />
 			</ResourceDictionary.MergedDictionaries>
-			<Menu x:Key="mainMenu" Style="{StaticResource menuStyle}">
-				<MenuItem FontSize="15" Header="File" />
-				<MenuItem FontSize="15" Header="Edit" />
-				<MenuItem FontSize="15" Header="View" />
-			</Menu>
 		</ResourceDictionary>
 
 	</Window.Resources>
@@ -39,7 +35,6 @@
 				<RowDefinition Height="*" />
 				<RowDefinition Height="30" />
 			</Grid.RowDefinitions>
-			<!--<ContentPresenter Grid.Row="0" Content="{StaticResource mainMenu}" />-->
 			<Border
 				Grid.Row="1"
 				BorderBrush="Blue"

@@ -13,9 +13,6 @@ namespace CustomTitleBarPOC.View
         public ChyronWindow()
         {
             InitializeComponent();
-           
         }
-
-
     }
 }

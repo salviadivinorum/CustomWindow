@@ -47,7 +47,7 @@
                                     Title="{TemplateBinding Title}"
                                     DockPanel.Dock="Top"
                                     Icon="{TemplateBinding Icon}" 
-									MenuContent="{DynamicResource mainMenu}"
+									MenuContent="{DynamicResource taskBarMenu}"
 									shell:WindowChrome.IsHitTestVisibleInChrome="True"/>                                
                             </DockPanel>
                             <AdornerDecorator Grid.Row="1">
