@@ -128,5 +128,14 @@ namespace CustomTitleBarPOC.View
         {
             window.WindowState = WindowState.Minimized;
         }
-    }
+
+		public static readonly DependencyProperty MenuContentProperty = DependencyProperty.Register(
+		"MenuContent", typeof(object), typeof(ChyronWindowTitleBar), new PropertyMetadata(default(object)));
+
+		public object MenuContent
+		{
+			get { return GetValue(MenuContentProperty); }
+			set { SetValue(MenuContentProperty, value); }
+		}
+	}
 }

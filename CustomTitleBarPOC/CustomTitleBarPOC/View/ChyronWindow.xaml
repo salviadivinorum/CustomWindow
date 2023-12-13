@@ -46,8 +46,9 @@
                                 <controls:ChyronWindowTitleBar
                                     Title="{TemplateBinding Title}"
                                     DockPanel.Dock="Top"
-                                    Icon="{TemplateBinding Icon}" />
-                                <ContentPresenter />
+                                    Icon="{TemplateBinding Icon}" 
+									MenuContent="{DynamicResource mainMenu}"
+									shell:WindowChrome.IsHitTestVisibleInChrome="True"/>                                
                             </DockPanel>
                             <AdornerDecorator Grid.Row="1">
                                 <ContentPresenter />

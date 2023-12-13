@@ -28,7 +28,8 @@
             <Grid Height="30">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="40" />
-                    <ColumnDefinition Width="*" />
+					<ColumnDefinition Width="Auto" />
+					<ColumnDefinition Width="*" />
                     <ColumnDefinition Width="40" />
                     <ColumnDefinition Width="40" />
                     <ColumnDefinition Width="40" />
@@ -40,13 +41,18 @@
                     Margin="5,0,0,0"
                     HorizontalAlignment="Left"
                     Source="{Binding Icon, ElementName=windowTitleBar}" />
-                <TextBlock
-                    Grid.Column="1"
+				<!-- menu content here -->
+				<ContentControl 
+					Grid.Column="1"
+					VerticalAlignment="Center"
+					Content="{Binding MenuContent, ElementName=windowTitleBar}" />
+				<TextBlock
+                    Grid.Column="2"
                     Margin="5,0,0,0"
                     HorizontalAlignment="Left"
                     VerticalAlignment="Center"
                     FontSize="14"
-                    Foreground="White"
+                    Foreground="Black"
                     Text="{Binding Title, ElementName=windowTitleBar}">
                     <TextBlock.Style>
                         <Style TargetType="TextBlock">
@@ -59,27 +65,27 @@
                     </TextBlock.Style>
                 </TextBlock>
                 <Button
-                    Grid.Column="2"
+                    Grid.Column="3"
                     Click="MinButton_Click"
                     Style="{StaticResource titleBarButtonStyle}">
                     <ContentControl Content="{DynamicResource MinimizeIcon}" />
                 </Button>
                 <Button
                     Name="maximizeButton"
-                    Grid.Column="3"
+                    Grid.Column="4"
                     Click="MaxButton_Click"
                     Style="{StaticResource titleBarButtonStyle}">
                     <ContentControl Content="{DynamicResource MaximizeIcon}" />
                 </Button>
                 <Button
                     Name="restoreButton"
-                    Grid.Column="3"
+                    Grid.Column="4"
                     Click="MaxButton_Click"
                     Style="{StaticResource titleBarButtonStyle}">
                     <ContentControl Content="{DynamicResource RestoreIcon}" />
                 </Button>
                 <Button
-                    Grid.Column="4"
+                    Grid.Column="5"
                     Click="CloseButton_Click"
                     Style="{StaticResource titleBarButtonStyle}">
                     <ContentControl Content="{DynamicResource CloseIcon}" />

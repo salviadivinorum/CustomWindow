@@ -1,56 +1,58 @@
 ﻿<Window
-    x:Class="CustomTitleBarPOC.MainWindow"
-    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
-    xmlns:local="clr-namespace:CustomTitleBarPOC"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:model="clr-namespace:CustomTitleBarPOC.Model"
-    xmlns:vm="clr-namespace:CustomTitleBarPOC.ViewModel"
-    Title="POC Chyron Title bar"
-    Width="800"
-    Height="450"
-    Margin="-1"
-    d:DataContext="{d:DesignInstance IsDesignTimeCreatable=True,
-                                     Type=vm:MainViewModel}"
-    Icon="pack://application:,,,/CustomTitleBarPOC;component/Assets/prime.ico"
-    ResizeMode="CanResizeWithGrip"
-    Style="{DynamicResource ChyronWindow}"
-    WindowStartupLocation="CenterScreen"
-    mc:Ignorable="d">
+	x:Class="CustomTitleBarPOC.MainWindow"
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+	xmlns:local="clr-namespace:CustomTitleBarPOC"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	xmlns:model="clr-namespace:CustomTitleBarPOC.Model"
+	xmlns:vm="clr-namespace:CustomTitleBarPOC.ViewModel"
+	Title="POC Chyron Title bar"
+	Width="800"
+	Height="450"
+	Margin="-1"
+	d:DataContext="{d:DesignInstance IsDesignTimeCreatable=True,
+	                                 Type=vm:MainViewModel}"
+	Icon="pack://application:,,,/CustomTitleBarPOC;component/Assets/prime.ico"
+	ResizeMode="CanResizeWithGrip"
+	Style="{DynamicResource ChyronWindow}"
+	WindowStartupLocation="CenterScreen"
+	mc:Ignorable="d">
 
-    <Window.Resources>
-        <ResourceDictionary>
-            <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="/View/ChyronWindow.xaml" />
-            </ResourceDictionary.MergedDictionaries>
-        </ResourceDictionary>
-    </Window.Resources>
-    <DockPanel>
-        <Grid Background="LightGray">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="*" />
-                <RowDefinition Height="30" />
-            </Grid.RowDefinitions>
-            <Menu Grid.Row="0" VerticalAlignment="Top">
-                <MenuItem FontSize="15" Header="File" />
-                <MenuItem FontSize="15" Header="Edit" />
-                <MenuItem FontSize="15" Header="View" />
-            </Menu>
-            <Border
-                Grid.Row="1"
-                BorderBrush="Blue"
-                BorderThickness="1">
-                <TextBlock
-                    HorizontalAlignment="Left"
-                    VerticalAlignment="Center"
-                    FontSize="15"
-                    Text="Status bar" />
-            </Border>
+	<Window.Resources>
+		<ResourceDictionary>
+			<ResourceDictionary.MergedDictionaries>
+				<ResourceDictionary Source="/View/ChyronWindow.xaml" />
+			</ResourceDictionary.MergedDictionaries>
+			<Menu x:Key="mainMenu" Style="{StaticResource menuStyle}">
+				<MenuItem FontSize="15" Header="File" />
+				<MenuItem FontSize="15" Header="Edit" />
+				<MenuItem FontSize="15" Header="View" />
+			</Menu>
+		</ResourceDictionary>
 
-        </Grid>
-    </DockPanel>
+	</Window.Resources>
+	<DockPanel>
+		<Grid Background="LightGray">
+			<Grid.RowDefinitions>
+				<RowDefinition Height="*" />
+				<RowDefinition Height="30" />
+			</Grid.RowDefinitions>
+			<!--<ContentPresenter Grid.Row="0" Content="{StaticResource mainMenu}" />-->
+			<Border
+				Grid.Row="1"
+				BorderBrush="Blue"
+				BorderThickness="1">
+				<TextBlock
+					HorizontalAlignment="Left"
+					VerticalAlignment="Center"
+					FontSize="15"
+					Text="Status bar" />
+			</Border>
+
+		</Grid>
+	</DockPanel>
 
 
 </Window>
