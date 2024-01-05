@@ -7,19 +7,21 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
+using System.Windows.Forms;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using CustomTitleBarPOC.Extensions;
 
 namespace CustomTitleBarPOC.View
 {
     /// <summary>
     /// Interaction logic for ChyronWindowTitleBar.xaml
     /// </summary>
-    public partial class ChyronWindowTitleBar : UserControl
-    {
+    public partial class ChyronWindowTitleBar : System.Windows.Controls.UserControl
+	{
         private Window window;
 
         public ChyronWindowTitleBar()
@@ -31,9 +33,12 @@ namespace CustomTitleBarPOC.View
             MouseLeftButtonDown += OnTitleBarLeftButtonDown;
             MouseDoubleClick += TitleBar_MouseDoubleClick;
             Loaded += ChyronWindowTitleBar_Loaded;
+			MouseMove += ChyronWindowTitleBar_MouseMove;
         }
 
-        private void ChyronWindowTitleBar_Loaded(object sender, RoutedEventArgs e)
+		
+
+		private void ChyronWindowTitleBar_Loaded(object sender, RoutedEventArgs e)
         {
             window = TemplatedParent as Window;
             if (window != null)
@@ -42,9 +47,6 @@ namespace CustomTitleBarPOC.View
                 RefreshMaximizeRestoreButton(window.WindowState);
             }
         }
-
-
-       
        
 
         public static readonly DependencyProperty TitleProperty = DependencyProperty.Register("Title", typeof(string), typeof(ChyronWindowTitleBar));
@@ -68,12 +70,73 @@ namespace CustomTitleBarPOC.View
             MaxButton_Click(sender, e);
         }
 
-        private void OnTitleBarLeftButtonDown(object sender, MouseEventArgs e)
+		private Point mouseDownPoint;
+		bool canMoveMaximizedWindow;
+
+		private void ChyronWindowTitleBar_MouseMove(object sender, System.Windows.Input.MouseEventArgs e)
+		{
+			if(window != null && e.LeftButton == MouseButtonState.Pressed)
+			{
+				if (canMoveMaximizedWindow)
+				{
+					var actualTop = WindowHelper.GetWindowTop(window);
+					var actualLeft = WindowHelper.GetWindowLeft(window);
+
+					var mousePositionToWindow = mouseDownPoint;
+					var actualWidth = ActualWidth;
+
+					var distL = mousePositionToWindow.X;
+					var distR = actualWidth - mousePositionToWindow.X;
+
+
+					window.WindowState = WindowState.Normal;
+
+					var titleBarHeight = ActualHeight;
+
+					var top = (mousePositionToWindow.Y - (titleBarHeight / 2));
+
+					double left;
+
+					var half = ActualWidth / 2;
+					if(distL < half)
+					{
+						left = distL;
+					}
+					else if(distR < half)
+					{
+						left = ActualWidth - distR;
+					}
+					else
+					{
+						left = half;
+					}
+
+					left = (mousePositionToWindow.X - left);
+
+					top = top < 0 ? 0 : top;
+					left = left < 0 ? 0 : left;
+
+					window.Top = actualTop + top;
+					window.Left = actualLeft + left;
+				}
+
+				canMoveMaximizedWindow = false;
+				window.DragMove();
+			}
+		}
+
+
+		private void OnTitleBarLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            if (window != null)
-            {
-                window.DragMove();
-            }
+			if (window.WindowState == WindowState.Maximized)
+			{
+				canMoveMaximizedWindow = true;
+				mouseDownPoint = e.MouseDevice.GetPosition(window);
+			}
+			else
+			{
+				canMoveMaximizedWindow = false;
+			}
         }
 
         private void CloseButton_Click(object sender, RoutedEventArgs e)
@@ -101,6 +164,8 @@ namespace CustomTitleBarPOC.View
                 {
                     window.WindowState = WindowState.Maximized;
                 }
+
+				canMoveMaximizedWindow = false;
             }
         }
 
