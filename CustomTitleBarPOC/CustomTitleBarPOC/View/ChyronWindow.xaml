@@ -27,7 +27,7 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Window}">
-                    <Border
+                    <Border x:Name="border"
                         Background="{TemplateBinding Background}"
                         BorderBrush="{TemplateBinding BorderBrush}"
                         BorderThickness="{TemplateBinding BorderThickness}">
@@ -55,7 +55,16 @@
                             </AdornerDecorator>
                         </Grid>
                     </Border>
-                </ControlTemplate>
+
+					<ControlTemplate.Triggers>
+						<!-- Changes the border when the window is not maximized. -->
+						<Trigger Property="WindowState" Value="Normal">
+							<Setter TargetName="border" Property="BorderBrush" Value="Black"/>
+							<Setter TargetName="border" Property="BorderThickness" Value="1"/>
+						</Trigger>
+					</ControlTemplate.Triggers>
+					
+				</ControlTemplate>
             </Setter.Value>
         </Setter>
     </Style>

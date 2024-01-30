@@ -5,8 +5,9 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="clr-namespace:CustomTitleBarPOC.View"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:shell="clr-namespace:System.Windows.Shell;assembly=PresentationFramework"
-    x:Name="windowTitleBar"
+    xmlns:shell="clr-namespace:System.Windows.Shell;assembly=PresentationFramework" 
+	xmlns:i="http://schemas.microsoft.com/xaml/behaviors"	
+	x:Name="windowTitleBar"
     d:DesignHeight="450"
     d:DesignWidth="800"
     mc:Ignorable="d">
@@ -16,7 +17,39 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="CommonStyles.xaml" />
             </ResourceDictionary.MergedDictionaries>
-        </ResourceDictionary>
+
+			<BitmapImage x:Key="restoreImage" UriSource="../Assets/restore-24.png" />
+			<BitmapImage x:Key="minimizeImage" UriSource="../Assets/minimize-24.png" />						
+			<BitmapImage x:Key="maximizeImage" UriSource="../Assets/maximize-24.png" />
+			<BitmapImage x:Key="closeImage" UriSource="../Assets/close-24.png" />
+
+			<ContextMenu x:Key="systemMenu">
+				<MenuItem Header="Restore">
+					<MenuItem.Icon>
+						<Image Source="{StaticResource restoreImage}" Height="10"/>
+					</MenuItem.Icon>
+				</MenuItem>
+				<MenuItem Header="Move"/>
+				<MenuItem Header="Size"/>
+				<MenuItem Header="Minimize">
+					<MenuItem.Icon>
+						<Image Source="{StaticResource minimizeImage}" Height="10"/>
+					</MenuItem.Icon>
+				</MenuItem>
+				<MenuItem Header="Maximize">
+					<MenuItem.Icon>
+						<Image Source="{StaticResource maximizeImage}" Height="10"/>
+					</MenuItem.Icon>
+				</MenuItem>
+				<Separator />
+				<MenuItem Header="Close" InputGestureText="Alt+F4" FontWeight="DemiBold">
+					<MenuItem.Icon>
+						<Image Source="{StaticResource closeImage}" Height="10"/>
+					</MenuItem.Icon>
+				</MenuItem>
+			</ContextMenu>
+			
+		</ResourceDictionary>
     </UserControl.Resources>
 
 
@@ -34,13 +67,18 @@
                     <ColumnDefinition Width="40" />
                     <ColumnDefinition Width="40" />
                 </Grid.ColumnDefinitions>
-                <Image
+				<Image
+					x:Name="windowIcon"
                     Grid.Column="0"
                     Width="24"
                     Height="24"
                     Margin="5,0,0,0"
                     HorizontalAlignment="Left"
-                    Source="{Binding Icon, ElementName=windowTitleBar}" />
+                    Source="{Binding Icon, ElementName=windowTitleBar}">
+					<!--<Image.ContextMenu>
+						<ContextMenu Name="systemMenu" Opened="SystemMenu_Opened" Closed="SystemMenu_Closed"></ContextMenu>
+					</Image.ContextMenu>-->
+				</Image>
 				<!-- menu content here -->
 				<ContentControl 
 					Grid.Column="1"

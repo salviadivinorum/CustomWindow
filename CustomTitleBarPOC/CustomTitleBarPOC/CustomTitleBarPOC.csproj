@@ -17,11 +17,15 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="Assets\close-24.png" />
     <None Remove="Assets\close-50.png" />
     <None Remove="Assets\install-updates-50.png" />
+    <None Remove="Assets\maximize-24.png" />
     <None Remove="Assets\maximize-50.png" />
+    <None Remove="Assets\minimize-24.png" />
     <None Remove="Assets\minimize-50.png" />
     <None Remove="Assets\prime.ico" />
+    <None Remove="Assets\restore-24.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -46,11 +50,17 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="Assets\close-50.png" />
+    <Resource Include="Assets\close-24.png" />
+    <Resource Include="Assets\close-50.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="Assets\install-updates-50.png" />
+    <Resource Include="Assets\maximize-24.png" />
     <Resource Include="Assets\maximize-50.png" />
+    <Resource Include="Assets\minimize-24.png" />
     <Resource Include="Assets\minimize-50.png" />
     <Resource Include="Assets\prime.ico" />
+    <Resource Include="Assets\restore-24.png" />
   </ItemGroup>
 
 </Project>
