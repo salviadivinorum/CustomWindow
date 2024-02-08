@@ -24,25 +24,25 @@
 			<BitmapImage x:Key="closeImage" UriSource="../Assets/close-24.png" />
 
 			<ContextMenu x:Key="systemMenu">
-				<MenuItem Header="Restore">
+				<MenuItem Header="Restore" Click="MaxButton_Click">
 					<MenuItem.Icon>
 						<Image Source="{StaticResource restoreImage}" Height="10"/>
 					</MenuItem.Icon>
 				</MenuItem>
-				<MenuItem Header="Move"/>
-				<MenuItem Header="Size"/>
-				<MenuItem Header="Minimize">
+				<MenuItem Header="Move" Click="MoveMenuItem_Click"/>
+				<MenuItem Header="Size" Click="SizeMenuItem_Click"/>
+				<MenuItem Header="Minimize" Click="MinButton_Click">
 					<MenuItem.Icon>
 						<Image Source="{StaticResource minimizeImage}" Height="10"/>
 					</MenuItem.Icon>
 				</MenuItem>
-				<MenuItem Header="Maximize">
+				<MenuItem Header="Maximize" Click="MaxButton_Click">
 					<MenuItem.Icon>
 						<Image Source="{StaticResource maximizeImage}" Height="10"/>
 					</MenuItem.Icon>
 				</MenuItem>
 				<Separator />
-				<MenuItem Header="Close" InputGestureText="Alt+F4" FontWeight="DemiBold">
+				<MenuItem Header="Close" InputGestureText="Alt+F4" FontWeight="DemiBold" Click="CloseButton_Click">
 					<MenuItem.Icon>
 						<Image Source="{StaticResource closeImage}" Height="10"/>
 					</MenuItem.Icon>

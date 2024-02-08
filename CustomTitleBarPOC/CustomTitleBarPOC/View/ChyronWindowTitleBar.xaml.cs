@@ -3,6 +3,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Forms;
 using CustomTitleBarPOC.Extensions;
 
 namespace CustomTitleBarPOC.View
@@ -26,6 +27,7 @@ namespace CustomTitleBarPOC.View
 			MouseMove += ChyronWindowTitleBar_MouseMove;
 		}
 
+		
 
 		private void WindowIcon_MouseDown(object sender, MouseButtonEventArgs e)
 		{
@@ -143,6 +145,7 @@ namespace CustomTitleBarPOC.View
 
 				canMoveMaximizedWindow = false;
 				window.DragMove();
+				Mouse.OverrideCursor = System.Windows.Input.Cursors.Arrow;
 			}
 		}
 
@@ -222,6 +225,33 @@ namespace CustomTitleBarPOC.View
 		{
 			get { return GetValue(MenuContentProperty); }
 			set { SetValue(MenuContentProperty, value); }
+		}
+
+		
+
+		private void MoveMenuItem_Click(object sender, RoutedEventArgs e)
+		{
+			if (window != null)
+			{
+				Mouse.OverrideCursor = System.Windows.Input.Cursors.SizeAll;
+
+				// Move the mouse to the middle of the current title bar control
+				var middlePoint = new Point(ActualWidth / 2, ActualHeight / 2);
+				var absoluteMiddlePoint = PointToScreen(middlePoint);
+				System.Windows.Forms.Cursor.Position = new System.Drawing.Point((int)absoluteMiddlePoint.X, (int)absoluteMiddlePoint.Y);
+
+
+				// puvodni
+				// WindowHelper.MoveWindow(window);
+			}
+		}
+
+		private void SizeMenuItem_Click(object sender, RoutedEventArgs e)
+		{
+			if (window != null)
+			{
+				WindowHelper.ResizeWindow(window);
+			}
 		}
 	}
 }

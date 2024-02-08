@@ -154,6 +154,24 @@ namespace CustomTitleBarPOC.Extensions
 			return 0;
 		}
 
+		[DllImport("user32.dll", CharSet = CharSet.Auto)]
+		public static extern IntPtr SendMessage(IntPtr hWnd, UInt32 Msg, IntPtr wParam, IntPtr lParam);
+
+		public const UInt32 SC_MOVE = 0xF010;
+		public const UInt32 SC_SIZE = 0xF000;
+		public const UInt32 HTCAPTION = 0x2;
+		public const UInt32 WM_SYSCOMMAND = 0x112;
+
+		public static void MoveWindow(Window window)
+		{
+			SendMessage(new WindowInteropHelper(window).Handle, WM_SYSCOMMAND, (IntPtr)SC_MOVE, (IntPtr)HTCAPTION);
+		}
+
+		public static void ResizeWindow(Window window)
+		{
+			SendMessage(new WindowInteropHelper(window).Handle, WM_SYSCOMMAND, (IntPtr)SC_SIZE, IntPtr.Zero);
+		}
+
 
 	}
 }
